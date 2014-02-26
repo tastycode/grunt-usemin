@@ -37,6 +37,14 @@ describe('RevvedFinder', function () {
         assert.equal('image.2345.png', rfile );
       });
 
+      it('should ignore extra characters on the given file', function () {
+        var rf = new RevvedFinder(function () {
+          return ['./image.2345.png'];
+        });
+        var rfile = rf.find('image.png?v=1.4.1', '.');
+        assert.equal('image.2345.png', rfile );
+      });
+
       it('should return revved version of the given file (prefix)', function () {
         var rf = new RevvedFinder(function () {
           return ['./2345.image.png'];
